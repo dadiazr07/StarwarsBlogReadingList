@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 export const Navbar = () => {
 	return (
 
-			<nav class="navbar navbar-dark bg-dark navbar-expand-lg sticky-top">
-				<div class="container-fluid">
-				<a class="navbar-brand text-warning" href="#">Navbar</a>
+			<nav className="navbar mt-auto navbar-dark bg-dark navbar-expand-lg sticky-top">
+				<div className="container-fluid">
+				<a className="navbar-brand text-warning" href="#">STAR WARS</a>
 				</div>
 			</nav>
 
