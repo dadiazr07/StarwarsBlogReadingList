@@ -4,26 +4,27 @@ import { Charactercard } from "../component/charactercard";
 export const Home = () => {
 
 	const [character, setCharacter] = useState([])
+	const [charData, setCharData] = useState ([])
 
-	const getCharacter = () => {
-		fetch("https://www.swapi.tech/api/people/1")
-		.then(res => res.json())
-		.then(data => {
-			console.log(data)
-			setCharacter(data.result.properties)})
-		.catch(err => console.error(err))
+	const getCharacter = async () => {
+		try {
+			const respuesta = await fetch("https://www.swapi.tech/api/people/1")
+			const datos = await respuesta.json()
+            setCharData(datos.result)
+			setCharacter(datos.result.properties)
+
+		} catch (error) {
+			console.log(error)
+		}
 	}
 
    useEffect(() => {
 	getCharacter()
    }, [])
 
-
-	
-
 	return(
 	<div className="text-center mt-5">
-		<Charactercard/>
+		<Charactercard character={character} charData={charData}/>
 	</div>
 	)
 	};
