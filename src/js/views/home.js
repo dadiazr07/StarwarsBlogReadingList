@@ -3,18 +3,16 @@ import { Charactercard } from "../component/charactercard";
 import { Planetcard } from "../component/planetcard";
 
 export const Home = () => {
-	const [charData, setCharData] = useState ({})
-	const [charProperties, setCharProperties] = useState({})
-	const [planetData, setPlanetData] = useState ({})
-	const [planetProperties, setPlanetProperties] = useState({})
+	const [charData, setCharData] = useState ([])
+	const [planetData, setPlanetData] = useState ([])
+	const API_URL = 'https://www.swapi.tech/api'
 
 
-	const getCharacter = async () => {
+	const getCharacters = async () => {
 		try {
-			const respuesta = await fetch("https://www.swapi.tech/api/people/1",{})
+			const respuesta = await fetch(`${API_URL}/people`,{})
 			const data = await respuesta.json()
-			setCharData(data.result)
-			setCharProperties(data.result.properties)
+			setCharData(data.results)
 		} catch (error) {
 			console.log(error)
 		}
@@ -22,46 +20,37 @@ export const Home = () => {
 
 	const getPlanets = async () => {
 		try {
-			const respuesta = await fetch("https://www.swapi.tech/api/planets/2",{})
+			const respuesta = await fetch(`${API_URL}/planets`,{})
 			const data = await respuesta.json()
-			setPlanetData(data.result)
-			setPlanetProperties(data.result.properties)
+			setPlanetData(data.results)
 		} catch (error) {
 			console.log(error)
 		}
 	}
 
-
-
-
-
-
-
-
    useEffect(() => {
-	getCharacter()
+	getCharacters()
 	getPlanets()
    }, [])
 
 
+	return(<div className="my-5 mx-0">
+				<div className="d-flex flex-row flex-nowrap overflow-auto">
+					{charData.map(character=>{
+						return <div className="text-center">
+									<Charactercard key={character.uid} character={character} API_URL={API_URL} endpoint={'people'}/>
+								</div>
+					})}
+
+					{/* {planets.map((planet, index)=>{
+						return
+						<div  className="planets card-group text-center mt-5 mb-5 px-0">
+							<Planetcard key={planet.url} item={planet}/>
+						</div>
+					})} */}
 
 
-
-	return(
-		<div className="">
-			<div className="characters card-group text-center mt-5 mb-5 px-0">
-				<Charactercard charData={charData} charProperties={charProperties}/>
-				<Charactercard charData={charData} charProperties={charProperties}/>
-				<Charactercard charData={charData} charProperties={charProperties}/>
-				<Charactercard charData={charData} charProperties={charProperties}/>
+				</div>
 			</div>
-			<div className="planets card-group text-center mt-5 mb-5 px-0">
-				<Planetcard planetData={planetData} planetProperties={planetProperties}/>
-				<Planetcard planetData={planetData} planetProperties={planetProperties}/>
-				<Planetcard planetData={planetData} planetProperties={planetProperties}/>
-				<Planetcard planetData={planetData} planetProperties={planetProperties}/>
-			</div>
-		</div>
-
 	)
 	};
