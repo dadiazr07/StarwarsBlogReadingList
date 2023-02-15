@@ -28,27 +28,29 @@ export const Home = () => {
 		}
 	}
 
+
    useEffect(() => {
 	getCharacters()
 	getPlanets()
    }, [])
 
 
-	return(<div className="my-5 mx-0">
+	return(<div className="my-5 mx-0 bg-black">
+				<h3 className="text-warning m-5">Characters.</h3>
 				<div className="d-flex flex-row flex-nowrap overflow-auto">
 					{charData.map(character=>{
 						return <div className="text-center">
 									<Charactercard key={character.uid} character={character} API_URL={API_URL} endpoint={'people'}/>
 								</div>
 					})}
-
-					{/* {planets.map((planet, index)=>{
-						return
-						<div  className="planets card-group text-center mt-5 mb-5 px-0">
-							<Planetcard key={planet.url} item={planet}/>
-						</div>
-					})} */}
-
+				</div>
+				<h3 className="text-warning m-5">Planets.</h3>
+				<div className="d-flex flex-row flex-nowrap overflow-auto">
+					{planetData.map(planet=>{
+						return <div className="text-center">
+									<Planetcard key={planet.uid} planet={planet} API_URL={API_URL} endpoint={'planets'}/>
+								</div>
+					})}
 
 				</div>
 			</div>

@@ -7,16 +7,14 @@ export const Charactercard = ({character , API_URL , endpoint}) => {
   
 
     return (
-            <div className="card rounded mx-2 rounded-4" style={{ minWidth: 300}}>
-                <img src={`https://starwars-visualguide.com/assets/img/characters/${character.uid}.jpg`} className="card-img-top"/>
+            <div className="card bg-black text-warning rounded mx-2 rounded-5 border-warning" style={{ minWidth: 300}}>
+                <img style={{ minHeight: 300}} src={`https://starwars-visualguide.com/assets/img/characters/${character.uid}.jpg`} className="card-img-top"/>
                 <div className="card-body">
                     <h5 className="card-title">{character.name}</h5>
-                    {/* <p className="card-text">Birth Year: {charInfo.birth_year}</p>
-                    <p className="card-text">Gender: {charInfo.gender}</p>
-                    <p className="card-text">Hair Color: {charInfo.hair_color}</p>
-                    <p className="card-text">Eye Color: {charInfo.eye_color}</p> */}
-                    <Link to={`/details/${endpoint}/${character.uid}`} className="btn btn-primary">Learn more!</Link>
-                    <a href="#" className="btn btn-primary">Add to favorites</a>
+                    <div className="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <Link to={`/details/${endpoint}/${character.uid}`} className="btn btn-dark btn-sm text-warning">Learn more!</Link>
+                        <a href="#" className="btn btn-dark btn-sm text-warning">♡</a>
+                    </div>
                 </div>
             </div>
     );

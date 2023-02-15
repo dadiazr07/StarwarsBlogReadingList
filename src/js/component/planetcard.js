@@ -1,21 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { element, object } from "prop-types";
+import { Link } from "react-router-dom";
 
-export const Planetcard = ({planetData , planetProperties}) => {
+export const Planetcard = ({planet , API_URL , endpoint}) => {
     
     
 
     return (
-            <div className="card mx-2 rounded rounded-4" style={{ width: 300}}>
-                <img src={`https://starwars-visualguide.com/assets/img/planets/${planetData.uid}.jpg`} className="card-img-top"/>
+            <div className="card bg-black text-warning rounded mx-2 rounded-5 border-warning" style={{ minWidth: 300}}>
+                <img style={{ minHeight: 300}} src={`https://starwars-visualguide.com/assets/img/planets/${planet.uid}.jpg`} onError={(e) =>(e.target.onerror = null)((e.target.src ="https://upload.wikimedia.org/wikipedia/commons/6/6c/Star_Wars_Logo.svg"))} className="card-img-top"/>
                 <div className="card-body">
-                    <h5 className="card-title">{planetProperties.name}</h5>
-                    <p className="card-text">Diameter: {planetProperties.diameter}</p>
-                    <p className="card-text">Population: {planetProperties.population}</p>
-                    <p className="card-text">Climater: {planetProperties.climate}</p>
-                    <p className="card-text">Terrain: {planetProperties.terrain}</p>
-                    <a href="#" className="btn btn-primary">Learn more!</a>
-                    <a href="#" className="btn btn-primary">Add to favorites</a>
+                    <h5 className="card-title">{planet.name}</h5>
+                    <div className="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <Link to={`/details/${endpoint}/${planet.uid}`} className="btn btn-dark btn-sm text-warning">Learn more!</Link>
+                        <a href="#" className="btn btn-dark btn-sm text-warning">♡</a>
+                    </div>
                 </div>
             </div>
     );
