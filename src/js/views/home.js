@@ -51,7 +51,7 @@ export const Home = () => {
 
 
 	return(<div className="my-5 mx-0 bg-black">
-				<h3 className="text-warning m-5">Characters.</h3>
+				<h3 className="text-warning m-5">characters.</h3>
 				<div className="d-flex flex-row flex-nowrap overflow-auto">
 					{charData.map(character=>{
 						return <div className="text-center">
@@ -60,7 +60,7 @@ export const Home = () => {
 					})}
 				</div>
 
-				<h3 className="text-warning m-5">Planets.</h3>
+				<h3 className="text-warning m-5">planets.</h3>
 				<div className="d-flex flex-row flex-nowrap overflow-auto">
 					{planetData.map(planet=>{
 						return <div className="text-center">
@@ -69,7 +69,7 @@ export const Home = () => {
 					})}
 				</div>
 
-				<h3 className="text-warning m-5">Starships.</h3>
+				<h3 className="text-warning m-5">starships.</h3>
 				<div className="d-flex flex-row flex-nowrap overflow-auto">
 					{starshipsData.map(starship=>{
 						return <div className="text-center">
