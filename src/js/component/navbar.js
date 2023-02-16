@@ -6,7 +6,7 @@ export const Navbar = () => {
 
 			<nav className="navbar mt-auto navbar-black bg-black navbar-expand-lg sticky-top">
 				<div className="container-fluid justify-content-center">
-				<Link to={"/"} className="navbar-brand text-warning ms-5" href="#"><h1 style={{ fontSize: 100}}>STAR WARS</h1></Link>
+				<Link to={"/"} className="navbar-brand text-warning ms-5" href="#"><h1 style={{ fontSize: 100}}>Star wars</h1></Link>
 				</div>
 			</nav>
 
