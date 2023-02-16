@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
+import { json } from "react-router";
 import { Charactercard } from "../component/charactercard";
 import { Planetcard } from "../component/planetcard";
+import { Starshipscard } from "../component/starshipscard";
 
 export const Home = () => {
 	const [charData, setCharData] = useState ([])
 	const [planetData, setPlanetData] = useState ([])
+	const [starshipsData, setStarships] = useState ([])
 	const API_URL = 'https://www.swapi.tech/api'
 
 
@@ -28,10 +31,22 @@ export const Home = () => {
 		}
 	}
 
+	const getStarships = async () => {
+		try {
+			const respuesta = await fetch(`${API_URL}/starships`,{})
+			const data = await respuesta.json()
+			setStarships(data.results)
+		} catch (error) {
+			console.log(error)
+		}
+	}
+
 
    useEffect(() => {
 	getCharacters()
 	getPlanets()
+	getStarships()
+	console.log(starshipsData)
    }, [])
 
 
@@ -44,6 +59,7 @@ export const Home = () => {
 								</div>
 					})}
 				</div>
+
 				<h3 className="text-warning m-5">Planets.</h3>
 				<div className="d-flex flex-row flex-nowrap overflow-auto">
 					{planetData.map(planet=>{
@@ -51,7 +67,15 @@ export const Home = () => {
 									<Planetcard key={planet.uid} planet={planet} API_URL={API_URL} endpoint={'planets'}/>
 								</div>
 					})}
+				</div>
 
+				<h3 className="text-warning m-5">Starships.</h3>
+				<div className="d-flex flex-row flex-nowrap overflow-auto">
+					{starshipsData.map(starship=>{
+						return <div className="text-center">
+									<Starshipscard key={starship.uid} starship={starship} API_URL={API_URL} endpoint={'starships'}/>
+								</div>
+					})}
 				</div>
 			</div>
 	)
