@@ -46,7 +46,6 @@ export const Home = () => {
 	getCharacters()
 	getPlanets()
 	getStarships()
-	console.log(starshipsData)
    }, [])
 
 

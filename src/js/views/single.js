@@ -21,40 +21,59 @@ export const Single = props => {
 	}
 
 
+
     useEffect(()=>{
         getINFO()
+		console.log(charInfo)
 	},[])
     
 
 
 	return (
-		<div className="jumbotron">
-			{/* <h1 className="display-4">This will show the demo element: {store.demo[params.theid].title}</h1> */}
+		<div>
 			<p>{params.theid}</p>
 			<p>{params.endpoint}</p>
 			<p>{charInfo.eye_color}//{API_URL}</p>
 
-
-			<div className="card m-5" style={{ minHeight: 550}}>
+			{params.endpoint == 'planets' ? 
+			<div className="card m-5 bg-dark text-warning" style={{ height: 550}}>
 				<div className="row g-0">
-					<div className="col-md-4"><img src={`https://starwars-visualguide.com/assets/img/characters/${params.theid}.jpg`} className="img-fluid rounded-start" onError={(e) =>(e.target.onerror = null)((e.target.src ="https://upload.wikimedia.org/wikipedia/commons/6/6c/Star_Wars_Logo.svg"))}></img></div>
+					<div className="col-md-4"><img src={`https://starwars-visualguide.com/assets/img/planets/${params.theid}.jpg`} className="img-fluid rounded-start" onError={(e) =>(e.target.onerror = null)((e.target.src ="https://upload.wikimedia.org/wikipedia/commons/6/6c/Star_Wars_Logo.svg"))}></img></div>
 					<div className="col-md-8">
 						<div className="card-body">
-							<h5 className="card-title">Card title</h5>
-							<p className="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-							<p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
+							<h1 className="card-title">{(charInfo.name)}</h1>
+							<p className="card-text">{(charInfo.population)}</p>
+							<p className="card-text">{(charInfo.gravity)}</p>
+							<p className="card-text">{(charInfo.climate)}</p>
+							<p className="card-text">{(charInfo.terrain)}</p>
+							<p className="card-text">{(charInfo.surface_water)}</p>
+							<p className="card-text">{(charInfo.diameter)}</p>
 						</div>
 					</div>
 				</div>
 			</div>
-
-
-
-
-
+			: params.endpoint == 'people' ? 
+			<div className="card m-5 bg-dark text-warning" style={{ height: 550}}>
+			<div className="row g-0">
+				<div className="col-md-4"><img src={`https://starwars-visualguide.com/assets/img/characters/${params.theid}.jpg`} className="img-fluid rounded-start" onError={(e) =>(e.target.onerror = null)((e.target.src ="https://upload.wikimedia.org/wikipedia/commons/6/6c/Star_Wars_Logo.svg"))}></img></div>
+				<div className="col-md-8">
+					<div className="card-body">
+						<h1 className="card-title">{(charInfo.name)}</h1>
+						<p className="card-text">{(charInfo.birth_year)}</p>
+						<p className="card-text">{(charInfo.gender)}</p>
+						<p className="card-text">{(charInfo.height)}</p>
+						<p className="card-text">{(charInfo.hair_color)}</p>
+						<p className="card-text">{(charInfo.skin_color)}</p>
+						<p className="card-text">{(charInfo.eye_color)}</p>
+						<p className="card-text">{(charInfo.homeworld)}</p>
+					</div>
+				</div>
+			</div>
+		</div> 
+		: <p>Not yet</p> }
 			<Link to="/">
 				<span className="btn btn-dark text-warning btn-lg" href="#" role="button">
-					Back home
+					back home
 				</span>
 			</Link>
 		</div>
