@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
+import { Context } from "../store/appContext";
 import { element, object } from "prop-types";
 import { Link } from "react-router-dom";
 
 export const Planetcard = ({planet , API_URL , endpoint}) => {
+    const { store, actions } = useContext(Context)
     
     
 
@@ -13,7 +15,7 @@ export const Planetcard = ({planet , API_URL , endpoint}) => {
                     <h5 className="card-title">{(planet.name).toLowerCase()}</h5>
                     <div className="d-grid gap-2 d-md-flex justify-content-md-end position-absolute bottom-0 end-0 mb-3 me-3">
                         <Link to={`/details/${endpoint}/${planet.uid}`} className="btn btn-dark btn-sm text-warning">Learn more!</Link>
-                        <a href="#" className="btn btn-dark btn-sm text-warning">♡</a>
+                        <a href="#"  onClick={(e) =>{actions.addtoFav(planet.uid)}} className="btn btn-dark btn-sm text-warning">♡</a>
                     </div>
                 </div>
             </div>
