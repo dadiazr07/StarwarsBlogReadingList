@@ -7,10 +7,10 @@ export const Favorites = () => {
         <>
             <div class="btn-group dropstart ms-5">
                 <button type="button" class="btn btn-warning btn-lg dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                    Favoritos
+                    Favorites
                 </button>
                 <ul className="dropdown-menu ">
-                    <li><h6 class="dropdown-header">Tus favoritos</h6></li>
+                    <li><h6 class="dropdown-header">Your favs</h6></li>
                     <li><a class="dropdown-item" href="#">algo</a></li>
                     <li><a class="dropdown-item" href="#">otra</a></li>
                     <li><a class="dropdown-item" href="#">mas</a></li>

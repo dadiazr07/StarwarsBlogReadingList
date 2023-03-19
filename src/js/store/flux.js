@@ -5,18 +5,20 @@ const getState = ({ getStore, getActions, setStore }) => {
 			planetData: [],
 			starshipsData: [],
 			currentInfo: {},
-			favorites: []
+			favorites: [],
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
 			},
+
 			loadSomeData: () => {
 				/**
 					fetch().then().then(data => setStore({ "foo": data.bar }))
 				*/
 			},
+
 			changeColor: (index, color) => {
 				//get the store
 				const store = getStore();
@@ -31,6 +33,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				//reset the global store
 				setStore({ demo: demo });
 			},
+
 			getCharacters: async () => {
 				const store = getStore()
 				const API_URL = 'https://www.swapi.tech/api'
@@ -72,6 +75,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 				setStore({starshipsData: starships})
 			},
+
 			getINFO: async (params) => {
 				const store = getStore()
 				const API_URL = 'https://www.swapi.tech/api'
@@ -85,13 +89,20 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 				setStore({currentInfo: info})
 			},
+
+			cleanInfo: () => {
+				const store = getStore()
+				setStore({currentInfo: {}})
+			},
+
 			addtoFav: (id) => {
 				const store = getStore()
-				const addchar = store.charData.find(item => item.id === id);
-				const addplan = store.charData.find(item => item.id === id);
-				const addstsp = store.charData.find(item => item.id === id);
+				const addchar = store.charData.filter(item => item.id === id);
+				const addplan = store.charData.filter(item => item.id === id);
+				const addstsp = store.charData.filter(item => item.id === id);
 				
-				const auxFav = addchar.concat(addplan).concat(addstsp)
+				const auxFav = addchar.concat(addplan, addstsp)
+				console.log(auxFav)
 				const newFav = auxFav.filter(item => item !== undefined)
 
 				setStore({ favorites: [...store.favorites, newFav]})
