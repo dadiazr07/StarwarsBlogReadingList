@@ -15,8 +15,13 @@ export const Charactercard = ({ character, API_URL, endpoint }) => {
             <div className="card-body position-relative">
                 <h5 className="card-title">{(character.name).toLowerCase()}</h5>
                 <div className="d-grid gap-2 d-md-flex justify-content-md-end position-absolute bottom-0 end-0 mb-3 me-3">
-                    <Link to={`/details/${endpoint}/${character.uid}`} className="btn btn-dark btn-sm text-warning">Learn more!</Link>
-                    <a onClick={(e) => { actions.addtoFav(character.uid) }} className="btn btn-dark btn-sm text-warning">♡</a>
+                    <Link to={`/details/${endpoint}/${character.uid}`} className="btn btn-dark btn-sm text-warning">Learn more!</Link>                 
+                    <a onClick={(e) => { 
+                        if (store.allData.length < 1) {
+                            actions.addAllData()
+                            actions.addToFav(character.url)
+                        } else { actions.addToFav(character.url) }
+                        }} className="btn btn-dark btn-sm text-warning">{ !store.favorites.some((el) => el.url == character.url) ? <>♡</> : <>♥</>}</a>
                 </div>
             </div>
         </div>

@@ -15,6 +15,7 @@ export const Single = (props) => {
 		actions.getINFO(params).then(setCharInfo(store.currentInfo))
 	}, [props])
 
+
 	return (
 
 		<div>

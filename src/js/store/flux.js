@@ -5,6 +5,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			planetData: [],
 			starshipsData: [],
 			currentInfo: {},
+			allData: [],
 			favorites: [],
 		},
 		actions: {
@@ -95,19 +96,43 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({currentInfo: {}})
 			},
 
-			addtoFav: (id) => {
+			addAllData: async () => {
 				const store = getStore()
-				const addchar = store.charData.filter(item => item.id === id);
-				const addplan = store.charData.filter(item => item.id === id);
-				const addstsp = store.charData.filter(item => item.id === id);
-				
-				const auxFav = addchar.concat(addplan, addstsp)
-				console.log(auxFav)
-				const newFav = auxFav.filter(item => item !== undefined)
+				const auxAllData = store.charData.concat( store.planetData, store.starshipsData )
 
-				setStore({ favorites: [...store.favorites, newFav]})
-				console.log(store.favorites)
+				setStore({ allData: auxAllData })
 			},
+
+			addToFav: (key) => {
+				const store = getStore()
+
+				const toCompare ={
+					url: key
+				}
+
+				const favExist = store.favorites.find(
+					(ele) => ele.url === toCompare.url
+				);
+				const favIndex = store.allData.find(
+					(ele) => ele.url === toCompare.url
+				);
+
+
+				if (favExist) {
+					let newFavDel = store.favorites.filter(fav => fav !== favExist);
+					setStore({ favorites: newFavDel })
+					return false
+				} else {
+					let newFavAdd = [
+						...store.favorites,
+						favIndex,
+					];
+					setStore({ favorites: newFavAdd });
+					return true
+				};
+
+			},
+
 		}
 	};
 };

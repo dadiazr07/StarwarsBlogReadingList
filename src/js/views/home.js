@@ -18,12 +18,13 @@ export const Home = () => {
    }, [])
 
 
+
 	return(<div className="my-5 mx-0 bg-black">
 				<h3 className="text-warning m-5">characters.</h3>
 				<div className="d-flex flex-row flex-nowrap overflow-auto">
 					{store.charData.map(character=>{
 						return <div className="text-center">
-									<Charactercard key={character.uid} character={character} API_URL={API_URL} endpoint={'people'}/>
+									<Charactercard key={character.url} character={character} API_URL={API_URL} endpoint={'people'}/>
 								</div>
 					})}
 				</div>
@@ -32,7 +33,7 @@ export const Home = () => {
 				<div className="d-flex flex-row flex-nowrap overflow-auto">
 					{store.planetData.map(planet=>{
 						return <div className="text-center">
-									<Planetcard key={planet.uid} planet={planet} API_URL={API_URL} endpoint={'planets'}/>
+									<Planetcard key={planet.url} planet={planet} API_URL={API_URL} endpoint={'planets'}/>
 								</div>
 					})}
 				</div>
@@ -41,7 +42,7 @@ export const Home = () => {
 				<div className="d-flex flex-row flex-nowrap overflow-auto">
 					{store.starshipsData.map(starship=>{
 						return <div className="text-center">
-									<Starshipscard key={starship.uid} starship={starship} API_URL={API_URL} endpoint={'starships'}/>
+									<Starshipscard key={starship.url} starship={starship} API_URL={API_URL} endpoint={'starships'}/>
 								</div>
 					})}
 				</div>
